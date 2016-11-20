@@ -12,11 +12,12 @@ defmodule Knight.Solver do
     case field_count == move_count do
       true ->
         Knight.Board.print_board(board)
-        exit(:shutdown)
       _ ->
         valid_moves = Enum.reduce(@moves, [], &valid_move(&1, &2, board, field))
         unless Enum.count(valid_moves) == 0 do
-          Enum.each(valid_moves, &update_board_and_solve(&1, board, move_count + 1))
+          Enum.each(valid_moves, &Task.async(
+            fn -> update_board_and_solve(&1, board, move_count + 1) end)
+          )
         end
     end
   end
