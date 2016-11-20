@@ -1,7 +1,5 @@
 defmodule Knight do
-  use Application
-
- def start(_type, _args) do
+ def start do
    Knight.Board.make_board
    |> Knight.Solver.solve()
  end
