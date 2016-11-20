@@ -4,6 +4,6 @@ defmodule Mix.Tasks.Knight do
   @shortdoc "show Knight move on board"
 
   def run(_args) do
-    spawn Knight.start(nil, nil)
+    Knight.start
   end
 end

@@ -12,6 +12,7 @@ defmodule Knight.Solver do
     case field_count == move_count do
       true ->
         Knight.Board.print_board(board)
+#        exit(:shutdown)
       _ ->
         valid_moves = Enum.reduce(@moves, [], &valid_move(&1, &2, board, field))
         unless Enum.count(valid_moves) == 0 do
